@@ -4,23 +4,23 @@ The information in this section applies to defining an IBM i job. The
 text fields in the graphical interfaces support
 OpCon token replacement. For additional information about this platform, refer to [IBM i LSAM
 Configuration](https://help.smatechnologies.com/opcon/agents/ibmi/latest/Files/Agents/IBM-i/Configuration.md)
- in the **IBM i LSAM** online help.
+in the **IBM i LSAM** online help.
 
 - Unless otherwise specified, name validation must conform to this set
-    of IBM i Name rules:
+  of IBM i Name rules:
   - Names must be 10 characters or less.
   - If a specific name validation lists a different number of
-        maximum characters, the specific rules override this rule.
+    maximum characters, the specific rules override this rule.
   - Names must begin with an alphabetic character (A through Z, @,
-        $, and \#).
+    $, and \#).
   - All subsequent characters can be alphanumeric (A through Z, 0
-        through 9, @, $, \#, and \_ (underscore)).
+    through 9, @, $, \#, and \_ (underscore)).
   - There can be no embedded blanks.
 - For international languages, certain other signs might qualify as
-    alphanumeric characters (such as the English Pound symbol (£)), but
-    the base software product should not allow for these alternate
-    symbols because the operating system from IBM is not distributed
-    that way.
+  alphanumeric characters (such as the English Pound symbol (£)), but
+  the base software product should not allow for these alternate
+  symbols because the operating system from IBM is not distributed
+  that way.
 
 :::note
 The Start Job Request Message for the IBM i is a subset of the Submit Job Command available on the IBM i.
@@ -33,9 +33,9 @@ If an asterisk (\*) is specified for any field, the default value specified in t
 :::
 
 - **Job Type**: Defines the type of job to schedule on the IBM i
-    LSAM. Once the Type is defined, all of the other     fields in this group of information are required except when Tracked
-    Job or File Arrival is defined. The following is a list of the
-    available options:
+  LSAM. Once the Type is defined, all of the other     fields in this group of information are required except when Tracked
+  Job or File Arrival is defined. The following is a list of the
+  available options:
   - Batch Job (default value)
   - Tracked Job
   - Queued Job
@@ -44,64 +44,64 @@ If an asterisk (\*) is specified for any field, the default value specified in t
   - FTP
   - File Arrival
 - **User ID**: Defines the name of the IBM i user profile under which
-    the job should be submitted. The defined user must have permissions
-    to the executable or script that will be defined in the Call
-    Information. The User ID can be defined as one of the following:
+  the job should be submitted. The defined user must have permissions
+  to the executable or script that will be defined in the Call
+  Information. The User ID can be defined as one of the following:
   - An actual IBM i user profile name.
   - An asterisk, which tells the LSAM to use the         default User ID (specified in the IBM i green screen LSAM
-        Parameters maintenance).
+    Parameters maintenance).
   - The special value \*CURRENT, typically used for Tracked, Queued
-        or Captured jobs that are pre-defined in IBM i before
-        OpCon even learns about the jobs.
+    or Captured jobs that are pre-defined in IBM i before
+    OpCon even learns about the jobs.
   - The special value \*JOBD, which tells the LSAM         and IBM i that the job description (named in a different field
-        for the job master) contains the name of the user profile that
-        should be used when submitting the job.
+    for the job master) contains the name of the user profile that
+    should be used when submitting the job.
 
 ### Job Description
 
 - **Name**: Defines the simple name of the job description used with
-    the job. The actual job description name may be specified.
+  the job. The actual job description name may be specified.
   - Default Value: **\***
   - Valid Values: **\***, **\*USRPRF**, or the actual job
-        description name. The name of the job description must not
-        exceed 10 characters.
+    description name. The name of the job description must not
+    exceed 10 characters.
 - **Library**: Defines the library associated with the job description
-    name.
+  name.
   - Default Value: **\***
   - Valid Values: **\***, **\*LIBL**, **\*CURLIB**, or the
-        user-defined name of the library associated with the job
-        description name. The name of the library must not exceed 10
-        characters.
+    user-defined name of the library associated with the job
+    description name. The name of the library must not exceed 10
+    characters.
 
 ### Library
 
 - **Current**: Defines the name of the current library associated with
-    the job being executed. The actual library name can be specified.
+  the job being executed. The actual library name can be specified.
   - Default Value: **\*** (asterisk)
   - Valid Values: **\***, **\*CRTDFT**, **\*USRPRF**, or a
-        user-defined library name. User-defined library names must not
-        exceed 10 characters.
+    user-defined library name. User-defined library names must not
+    exceed 10 characters.
 - **Init Lib List**: Defines the initial user part of the library list
-    that is used to search for any objects without a library. The
-    individual library names are not supported.
+  that is used to search for any objects without a library. The
+  individual library names are not supported.
   - Default Value: **\*JOBD**
   - Valid Values: **\***, **\*JOBD**, **\*NONE**, **\*SYSVAL**,
-        **\*CURRENT**, or a user-defined library name. User-defined
-        library names must not exceed 10 characters.
+    **\*CURRENT**, or a user-defined library name. User-defined
+    library names must not exceed 10 characters.
 
 ### Job Queue
 
 - **Name**: Defines the name of the job queue in which this job is
-    placed. The actual job queue name may be specified.
+  placed. The actual job queue name may be specified.
   - Default Value: **\*JOBD**
   - Valid Values: **\***, **\*JOBD**, or the actual job queue name.
-        The name of the job queue must not exceed 10 characters.
+    The name of the job queue must not exceed 10 characters.
 - **Library**: Defines the library associated with the batch queue
-    name.
+  name.
   - Default Value: **\*** (asterisk)
   - Valid Values: **\***, **\*LIBL**, **\*CURLIB**, or the
-        user-defined name of the library associated with the batch queue
-        name. The name of the library must not exceed 10 characters.
+    user-defined name of the library associated with the batch queue
+    name. The name of the library must not exceed 10 characters.
 
 ### Call Information
 
@@ -109,31 +109,13 @@ The Call Information is required for all Job Types, except Tracked Job
 and File Arrival. Depending on the job type, different fields are
 required for the Call Information.
 
-+---------------------+----------------------+
-| Job Type            | Required Information |
-+=====================+======================+
-| Batch Job           | Prerun               |
-|                     |                      |
-|                     | Call                 |
-+---------------------+----------------------+
-| Queued Job          | Prerun               |
-+---------------------+----------------------+
-| Operator Replay Job | Prerun               |
-|                     |                      |
-|                     | Script name          |
-+---------------------+----------------------+
-| Restricted Mode     | Prerun               |
-|                     |                      |
-|                     | Script name          |
-+---------------------+----------------------+
-| FTP                 | Remote System        |
-|                     |                      |
-|                     | Transfer Information |
-|                     |                      |
-|                     | Local Information    |
-|                     |                      |
-|                     | Remote Information   |
-+---------------------+----------------------+
+| Job Type            | Required Information                                                                         |
+| ------------------- | -------------------------------------------------------------------------------------------- |
+| Batch Job           | Prerun <br /> Call                                                                           |
+| Queued Job          | Prerun                                                                                       |
+| Operator Replay Job | Prerun <br />Script name                                                                     |
+| Restricted Mode     | Prerun <br /> Script name                                                                    |
+| FTP                 | Remote System <br /> Transfer Information <br /> Local Information <br /> Remote Information |
 
 :::note
 All the rules for the IBM i FTP command and sub-commands apply to the FTP Job Type. For additional information, consult the IBM documentation.
@@ -145,76 +127,76 @@ For additional information on command CFGTCP (option 10), consult the IBM docume
 :::
 
 - **Prerun** (Optional): Defines the IBM i job to be executed
-    immediately before the initiation of the job specified in the
-    Call/Script Name.
+  immediately before the initiation of the job specified in the
+  Call/Script Name.
   - If the Prerun job terminates with an error, it will be
-        rescheduled at a user-defined interval.
+    rescheduled at a user-defined interval.
   - The Prerun job will continue to execute at the user-defined
-        interval until it succeeds, allowing the job in Call/Script Name
-        to process.
+    interval until it succeeds, allowing the job in Call/Script Name
+    to process.
   - The primary purpose of a Prerun is to test any required
-        preconditions to job execution.
+    preconditions to job execution.
   - Valid Values: CHKDTAARA, CHKFILE, or a user-defined prerun
-        value. A user-defined value must not exceed 255 characters.
+    value. A user-defined value must not exceed 255 characters.
 - **Call/Script Name** (Required): For a Batch Job, enter the program
-    name using the CALL command or enter a command name. Do not use the SMBJOB command. If the SMBJOB command is used, the LSAM will
-    not be able to track the job for failure. Include parameters in this
-    field as desired. For an Operator Replay Job or Restricted Mode Job,
-    enter the script name. The call or script name must not exceed 2000
-    characters.
+  name using the CALL command or enter a command name. Do not use the SMBJOB command. If the SMBJOB command is used, the LSAM will
+  not be able to track the job for failure. Include parameters in this
+  field as desired. For an Operator Replay Job or Restricted Mode Job,
+  enter the script name. The call or script name must not exceed 2000
+  characters.
 
 ## Additional Info
 
 - **JobQ Priority**: Defines the job queue scheduling priority.
   - Valid values range from 1 through 9, where 1 is the highest
-        priority and 9 is the lowest.
+    priority and 9 is the lowest.
   - The specification \*JOBD is not supported.
 
 - **Job Date**: Defines the calendar date for the job to be associated
-    with.
+  with.
   - Valid Values: **\*JOBD**, **\*SYSVAL**, **\*SCHEDULE DATE**, or
-        a user-defined calendar date. User-defined dates must follow
-        these requirements:
+    a user-defined calendar date. User-defined dates must follow
+    these requirements:
     - Minimum Characters: 1
     - Maximum Characters: 20
     - Valid Characters: Numeric Characters (0 - 9), slash (/),
-            dash (-), period (.), comma (,), and space.
+      dash (-), period (.), comma (,), and space.
     - Default Value: **\*JOBD**
 
 - **Accounting Code**: Defines the accounting code that is used when
-    logging system resource use. The accounting code must not exceed 15
-    characters.
+  logging system resource use. The accounting code must not exceed 15
+  characters.
 
 - **Log CL Commands**: (Required): Defines whether the commands that
-    are run in a control language program are logged to the job log by
-    way of the CL program's message queue.
+  are run in a control language program are logged to the job log by
+  way of the CL program's message queue.
 
   - Default Value: **\*JOBD**
   - Valid Values: **\***, **\*JOBD**, **\*NO**, **\*YES**
 
 - **Inquiry Message Reply** (Required): Defines the way predefined
-    messages are answered when sent as a result of running the job. If
-    not specified, the default value specified in the SMA system
-    parameters will be used.
+  messages are answered when sent as a result of running the job. If
+  not specified, the default value specified in the SMA system
+  parameters will be used.
   - Default Value: **\*JOBD**
   - Valid Values: **\***, **\*JOBD**, **\*RQD**, **\*DFT**,
-        **\*SYSRPYL**
+    **\*SYSRPYL**
 
 ### Output Queue
 
 - **Name**: Defines the output queue used for spooled files. The
-    actual output queue name may be specified.
+  actual output queue name may be specified.
   - Default Value: **\*JOBD**
   - Valid Values: **\***, **\*CURRENT**, **\*USRPRF**, **\*DEV**,
-        **\*JOBD**, or the actual output queue name. The name of the
-        library must not exceed 10 characters.
+    **\*JOBD**, or the actual output queue name. The name of the
+    library must not exceed 10 characters.
 - **Library**: Defines the library associated with the Output Queue
-    name.
+  name.
   - Default Value: **\*** (asterisk)
   - Valid Values: **\***, **\*LIBL**, **\*CURLIB**, or the
-        user-defined name of the library associated with the output
-        queue name. The name of the library must not exceed 10
-        characters.
+    user-defined name of the library associated with the output
+    queue name. The name of the library must not exceed 10
+    characters.
 
 ### Message Logging
 
@@ -230,46 +212,46 @@ If an asterisk (\*) is specified, the default value specified in the SMA Technol
 - **Level**(Required): Defines the number of messages for logging.
   - Default Value: **\*JOBD**
   - Valid Values: **\***, **\*JOBD**, **0**, **1**, **2**, **3**,
-        **4**
+    **4**
     - Valid values range from 0 to 4, with 0 being no logging and
-            4 being the highest level of detail.
+      4 being the highest level of detail.
 - **Severity** (Required): Defines the lowest severity level that
-    causes an error message to be logged.
+  causes an error message to be logged.
   - Default Value: **\*JOBD**
   - Valid Values: **\***, **\*JOBD**, **00**, **01**, **02**,
-        **03**, **04**, **05**, through **99**
+    **03**, **04**, **05**, through **99**
 - **Text** (Required): Defines the detail of the text logged.
   - Default Value: **\*JOBD**
   - Valid Values: **\***, **\*JOBD**, **\*MSG**, **\*SECLVL**,
-        **\*NOLIST**
+    **\*NOLIST**
 
 ### Job Log Retention
 
 - **Number of Occurrences** (Optional): Defines the number of
-    occurrences to save for times when this same job name may be
-    executed more than once.
+  occurrences to save for times when this same job name may be
+  executed more than once.
   - The last (n) number of occurrences of job logs for this job name
-        will be retained, while any prior job logs for this job name
-        will be deleted.
+    will be retained, while any prior job logs for this job name
+    will be deleted.
   - When this value is left at zero, this parameter will be ignored
-        and all job logs will only be subject to the Number of Days (if
-        set).
+    and all job logs will only be subject to the Number of Days (if
+    set).
   - User-defined Value:
     - Minimum Value: 0 (turns off joblog cleanup at the job
-            level).
+      level).
     - Maximum Value: 999.
   - Valid Values: Only numeric characters (0 -- 9).
 - **Number of Days** (Optional): Defines the number of days to keep of
-    the job logs.
+  the job logs.
   - The LSAM will delete (or cause the system to         delete, during its normal course of operations) job logs for the
-        names of the jobs that have existed on the system for more than
-        the number of days set in this parameter.
+    names of the jobs that have existed on the system for more than
+    the number of days set in this parameter.
   - When this value is left at zero, this parameter will be ignored
-        and all job logs will only be subject to the Number of
-        Occurrences (if set).
+    and all job logs will only be subject to the Number of
+    Occurrences (if set).
   - User-defined Value:
     - Minimum Value: 0 (turns off joblog cleanup at the job
-            level).
+      level).
     - Maximum Value: 999.
   - Valid Values: Only numeric characters (0 -- 9).
 
@@ -281,38 +263,38 @@ defined, there are several required fields. Refer to the field
 definitions below:
 
 - **Message ID**: Defines the 7 character Message ID displayed at the
-    beginning of the message. This field is required if the Severity is
-    set to a value of 00.
+  beginning of the message. This field is required if the Severity is
+  set to a value of 00.
 - **Compare Data** (Optional): Defines the characters to find in the
-    message (defined by the message ID). The value must not exceed 30
-    characters.
+  message (defined by the message ID). The value must not exceed 30
+  characters.
 - **Position** (Optional): Defines the position to start looking for
-    the Compare Data word in the Message defined by the Msg ID. The
-    value must not exceed 999 characters. Message data can be as long as
-    2147483647, but IBM i supports only up to position 999 in their
-    reply list entries.
+  the Compare Data word in the Message defined by the Msg ID. The
+  value must not exceed 999 characters. Message data can be as long as
+  2147483647, but IBM i supports only up to position 999 in their
+  reply list entries.
 - **Severity**: Defines the messages to look for based on severity.
   - Severity is **Required** if Msg ID is blank.
   - Valid Values: 00 (default value), 10, 20, 30, 40, 50, 60, 70,
-        80, 90.
+    80, 90.
 - **Action** (Required): Defines what the LSAM does     when a message meets the defined criteria.
   - Valid Values:
     - Reply (default value)
     - Event
     - Both
 - **Reply**: Defines the response the LSAM sends as     the reply when the *Action* is set to *'Reply'* or *'Both'* and
-    when the message meets the search criteria. The reply must not
-    exceed 6 characters.
+  when the message meets the search criteria. The reply must not
+  exceed 6 characters.
   - Reply is **Required** if *Action* is set to *'Reply'* or
-        *'Both'*.
+    *'Both'*.
 - **End Job** (Required): Defines whether to end the
-    OpCon job after the message meets the
-    criteria or to allow it to keep running.
+  OpCon job after the message meets the
+  criteria or to allow it to keep running.
   - Valid Values: N, Y
 - **Event**: Defines the OpCon event to
-    send to the SAM-SS when the message meets the search criteria.
+  send to the SAM-SS when the message meets the search criteria.
   - Valid Values: Refer to the [OpCon Events](../events/introduction.md) online help. The event
-        string must not exceed 738 characters.
+    string must not exceed 738 characters.
 
 ## Spool Files
 
@@ -322,29 +304,29 @@ defined, there are several required fields. Refer to field definitions
 below:
 
 - **File Name** (Required): Defines the name of the file that contains
-    the output from the job. Valid values include **\*ALL** or a
-    user-defined value. User-defined values must not exceed 10
-    characters.
+  the output from the job. Valid values include **\*ALL** or a
+  user-defined value. User-defined values must not exceed 10
+  characters.
 - **User** (Optional): Defines the User name. Valid values include All
-    Batch User IDs defined in the OpCon
-    database for the IBM i platform, or a user-defined value. The user
-    name must not exceed 10 characters.
+  Batch User IDs defined in the OpCon
+  database for the IBM i platform, or a user-defined value. The user
+  name must not exceed 10 characters.
 - **OutQ Name** (Optional): Defines the Outq Name. Valid values
-    include \*USRPRF or a user-defined value. The Outq Name must not
-    exceed 10 characters.
+  include \*USRPRF or a user-defined value. The Outq Name must not
+  exceed 10 characters.
 - **OutQ Library**: Defines the library that contains the Outq.
   - **Required** if Outq Name is not blank.
   - The default value is Blank, but if \*USRPRF is defined for the
-        Outq Name, set \*USRPRF for Outq Library.
+    Outq Name, set \*USRPRF for Outq Library.
   - Valid Values: **\*USRPRF** or a user-defined value. User-defined
-        values must not exceed 10 characters.
+    values must not exceed 10 characters.
 - **Total Copies** (Optional): Defines the number of spool file copies
-    to create. Valid values range from 1 through 255.
+  to create. Valid values range from 1 through 255.
 - **Hold** (Optional): Determines whether to print the spool file.
   - Default Value: \* (accept default)
   - Valid Values: \*, Y, N
 - **Save** (Optional): Determines whether to save the spool file after
-    it is printed.
+  it is printed.
   - Default Value: \* (accept default)
   - Valid Values: \*, Y, N
 
@@ -363,18 +345,18 @@ the values are stored in the LSAM table, they are available to any feature of th
 Variables are supported. Refer to field definitions below:
 
 - **Variable Name**: Defines the name of the IBM i
-    LSAM Dynamic Variable that stores the value.     -   Maximum Characters: 12
+  LSAM Dynamic Variable that stores the value.     -   Maximum Characters: 12
   - Valid Characters: A - Z, 0 - 9, and special characters
   - Invalid Characters: blanks and spaces
 - **Value**: Defines the character string to use as the value to be
-    stored in the IBM i LSAM Dynamic Variables table.     You may use an OpCon token in this field
-    so that the value of the associated OpCon
-    property will be assigned to the LSAM Dynamic     Variable. Use CTRL + T to select from a list of existing
-    OpCon Global Properties, or manually type
-    the token referencing any Global or Instance property desired.
+  stored in the IBM i LSAM Dynamic Variables table.     You may use an OpCon token in this field
+  so that the value of the associated OpCon
+  property will be assigned to the LSAM Dynamic     Variable. Use CTRL + T to select from a list of existing
+  OpCon Global Properties, or manually type
+  the token referencing any Global or Instance property desired.
   - The value should be no more than a 128-character string or an
-        OpCon token that resolves to a value
-        of no more than 128 characters.
+    OpCon token that resolves to a value
+    of no more than 128 characters.
   - Valid Characters: Any
 
 ## FTP Job Type Information
@@ -382,7 +364,7 @@ Variables are supported. Refer to field definitions below:
 ### Transfer Information
 
 - **Action Type** (Required): Defines the FTP command to use. The
-    valid values are:
+  valid values are:
   - PUT (default value)
   - MPUT
   - GET
@@ -391,13 +373,13 @@ Variables are supported. Refer to field definitions below:
   - MDEL
 
 - **User**: Defines the FTP users for connecting to the remote system.
-    If not specified, the LSAM will use the default user     from the LSAM parameters.
+  If not specified, the LSAM will use the default user     from the LSAM parameters.
   - Valid Values: All Batch User IDs defined in the
-        OpCon database for the IBM i platform
-        or a user-defined value. The FTP User name must not exceed 128
-        characters.
+    OpCon database for the IBM i platform
+    or a user-defined value. The FTP User name must not exceed 128
+    characters.
 - **Transfer Type** (Required): Defines the type of transfer for
-    binary or ASCII. The valid values are:
+  binary or ASCII. The valid values are:
   - BIN (default value)
   - ASCII
   - EBCDIC
@@ -405,10 +387,10 @@ Variables are supported. Refer to field definitions below:
 ### Remote Information
 
 - **Remote System** (Required): Defines the name of the remote system.
-    The remote system name must not exceed 255 characters.
+  The remote system name must not exceed 255 characters.
   - Field value extensions: The IBM i "FTP" command keywords not
-        already used by the OpCon job can be added to the Remote System
-        name to alter how the FTP connection will be managed.
+    already used by the OpCon job can be added to the Remote System
+    name to alter how the FTP connection will be managed.
 
         To add FTP command keywords, type the IBM i Agent's "job
         parameters separator character" after the Remote System name,
@@ -422,21 +404,21 @@ Variables are supported. Refer to field definitions below:
         .
 
 - **Remote File Name** (Required): Defines the name for the file once
-    it reaches the remote machine.
+  it reaches the remote machine.
   - Valid Values: \*LCLFILNAM or a user-defined value. A
-        user-defined remote file name must not exceed 128 characters.
+    user-defined remote file name must not exceed 128 characters.
 - **Remote Library or Directory** (Required): Defines the library or
-    directory to receive the file on the remote machine. The remote
-    library or directory must not exceed 512 characters.
+  directory to receive the file on the remote machine. The remote
+  library or directory must not exceed 512 characters.
 
 ### Local Information
 
 - **Local File Name** (Required): Defines the file name on the IBM i
-    machine to transfer to the remote machine. The file name must not
-    exceed 128 characters.
+  machine to transfer to the remote machine. The file name must not
+  exceed 128 characters.
 - **Local Library or Directory** (Required): Defines the library or
-    directory containing the file on the IBM i machine. The local
-    library or directory must not exceed 512 characters.
+  directory containing the file on the IBM i machine. The local
+  library or directory must not exceed 512 characters.
 
 ## File Arrival Job Type Information
 
@@ -481,50 +463,50 @@ Valid formats for File Name include:
 - LIBRARY/FILENAME = Format for DB2 database files (tables).
 
 - LIBRARY/FILENAME(MEMBER) = Format for verifying the presence of a
-    data member within a DB2 file. Data members are not supported by
-    SQL-defined tables; however, legacy DB2 files can support multiple
-    data members, and multiple data members are commonly used to store
-    the source code for programs, within a Source Physical File (refer
-    to IBM i documentation about the command CRTSRCPF).
+  data member within a DB2 file. Data members are not supported by
+  SQL-defined tables; however, legacy DB2 files can support multiple
+  data members, and multiple data members are commonly used to store
+  the source code for programs, within a Source Physical File (refer
+  to IBM i documentation about the command CRTSRCPF).
 
 - /directoryA/directory1/filename.ext = Format for Integrated File
-    System stream files stored in file systems outside of the DB2
-    database, such as the root '/' file system. The extension is
-    optional, but it must be specified if the file is actually named
-    with an extension.
+  System stream files stored in file systems outside of the DB2
+  database, such as the root '/' file system. The extension is
+  optional, but it must be specified if the file is actually named
+  with an extension.
 
 - DB2 files (tables) can also be checked using the CHKIFSFIL command
-    by utilizing the IBM standard for DB2 file names according to the
-    non-DB2 open file system naming standards (also known by the FTP
-    sub-command as NAMEFMT 1). For example:
-    /QSYS.LIB/MYLIB.LIB/FILENAME.FILE or (to verify the presence of a
-    specific data member within a multiple member physical file)
-    /QSYS.LIB/MYLIB.LIB/SRCFILE.FILE/MBRNAME.MBR. However, the CHKIFSFIL
-    command will execute the CHKFILE command upon discovering a DB2 file
-    name, so it is generally better to use the DB2 naming format.
+  by utilizing the IBM standard for DB2 file names according to the
+  non-DB2 open file system naming standards (also known by the FTP
+  sub-command as NAMEFMT 1). For example:
+  /QSYS.LIB/MYLIB.LIB/FILENAME.FILE or (to verify the presence of a
+  specific data member within a multiple member physical file)
+  /QSYS.LIB/MYLIB.LIB/SRCFILE.FILE/MBRNAME.MBR. However, the CHKIFSFIL
+  command will execute the CHKFILE command upon discovering a DB2 file
+  name, so it is generally better to use the DB2 naming format.
 
 Generic file search characters can be used:
 
 - Generic search rules apply to the file name only.
 
   - Generic search characters are not supported for a directory or
-        library name in the path to the file.
+    library name in the path to the file.
 
   - They are also not supported for an optional DB2 member name.
 
 - (\*) = an asterisk can be used to represent any length of
-    characters. This character is typically used as the last character
-    when searching for all files that match the first few other
-    characters, e.g., MYFIL\*.
+  characters. This character is typically used as the last character
+  when searching for all files that match the first few other
+  characters, e.g., MYFIL\*.
 
 - It is also valid to use an asterisk (\*) to match any, or none, file
-    extensions in the IFS file systems, e.g., /filename.\* would match
-    /filename.txt or /filename.pdf.
+  extensions in the IFS file systems, e.g., /filename.\* would match
+  /filename.txt or /filename.pdf.
 
 - (?) = a question mark can be used in place of any single character
-    that will always be considered as matching. More than one question
-    mark can be used within a file name, e.g., LIB/MYF?LE or
-    /directory/filen?me.txt.
+  that will always be considered as matching. More than one question
+  mark can be used within a file name, e.g., LIB/MYF?LE or
+  /directory/filen?me.txt.
 
 - Question marks and asterisks can be mixed: /directory/filen?me.\*.
 
@@ -576,33 +558,33 @@ normally or abnormally, depending on certain types of errors that could
 otherwise cause the job to fail.
 
 - **Always Succeed**: This option instructions the Agent to report a
-    final job status of Finished OK, regardless of the completion code
-    it reports. Completion codes will still appear in the Exit
-    Description and they will be reported as LSAM Feedback, so that the
-    Events tab of a job can be used to manage subsequent OpCon work
-    flow, but the File Arrival job itself will appear with Finished OK
-    status.
+  final job status of Finished OK, regardless of the completion code
+  it reports. Completion codes will still appear in the Exit
+  Description and they will be reported as LSAM Feedback, so that the
+  Events tab of a job can be used to manage subsequent OpCon work
+  flow, but the File Arrival job itself will appear with Finished OK
+  status.
 - **Fail If File Contains Zero Records or Zero Bytes**: This exception
-    tells the Agent to force a job failure report to OpCon, using
-    completion code CKF0005, if a found file contains zero records or
-    zero bytes of data. This exception will first take into account an
-    option to check the File Size Stable Duration, if a number of
-    seconds were specified.
+  tells the Agent to force a job failure report to OpCon, using
+  completion code CKF0005, if a found file contains zero records or
+  zero bytes of data. This exception will first take into account an
+  option to check the File Size Stable Duration, if a number of
+  seconds were specified.
 - **Fail On Error**: This is the normal and default failure condition.
-    The File Arrival job provides a completion code of CKF0010 if the
-    requested file is found and has passed any optional status checks.
-    Otherwise, when the Agent is reporting a different completion code,
-    the OpCon Job will show a status of Failed.
+  The File Arrival job provides a completion code of CKF0010 if the
+  requested file is found and has passed any optional status checks.
+  Otherwise, when the Agent is reporting a different completion code,
+  the OpCon Job will show a status of Failed.
 - **Fail On Error Except Reached End Time**: This exception tells the
-    Agent to not send a "file not found" (completion code CKF0001) if
-    the End Time is reached, but no matching file (and/or valid file
-    Create Time) was found. This exception is useful when a file is only
-    optionally present, and the OpCon Schedule(s) should be allowed to
-    continue normally -- except for possibly skipping unnecessary jobs.
+  Agent to not send a "file not found" (completion code CKF0001) if
+  the End Time is reached, but no matching file (and/or valid file
+  Create Time) was found. This exception is useful when a file is only
+  optionally present, and the OpCon Schedule(s) should be allowed to
+  continue normally -- except for possibly skipping unnecessary jobs.
   - Optionally, the LSAM Feedback Event type can be used to detect
-        the CKF0001 completion code, so that Event commands can be used
-        to modify the OpCon Schedules and/or Jobs that may follow the
-        File Arrival job.
+    the CKF0001 completion code, so that Event commands can be used
+    to modify the OpCon Schedules and/or Jobs that may follow the
+    File Arrival job.
 
 ### Check File Authority
 
@@ -649,24 +631,24 @@ slow file loading times should use longer times to verify that the file
 size is stable and no more data is expected.
 
 - Files (tables) in the DB2 database are measured by the number of
-    records in the file. An empty file (table) is represented as having
-    zero records (zero rows).
+  records in the file. An empty file (table) is represented as having
+  zero records (zero rows).
 
 - Files outside of the DB2 database, such as stream files in the IFS
-    root '/' file system, are measured by the number of data bytes
-    contained within the stream file. The number of bytes of data does
-    not include the size of the file structure itself (where IBM stores
-    meta data that describes the attributes of the stream file). An
-    empty stream file is represented as having zero data bytes.
+  root '/' file system, are measured by the number of data bytes
+  contained within the stream file. The number of bytes of data does
+  not include the size of the file structure itself (where IBM stores
+  meta data that describes the attributes of the stream file). An
+  empty stream file is represented as having zero data bytes.
 
 The number of records or data byes will be stored in the IBM i LSAM
 Dynamic Variable, if specified for the "Record Count Dynamic Variable."
 
 - Stream files are not evaluated by the File Arrival job for any
-    possible record separators that could be contained within the data
-    stream. Only the number of data bytes reported by the IBM i IFS file
-    system are considered, and this count would include any embedded
-    record separators.
+  possible record separators that could be contained within the data
+  stream. Only the number of data bytes reported by the IBM i IFS file
+  system are considered, and this count would include any embedded
+  record separators.
 
 :::note
 Do not confuse the option $\@RECHKFREQ (re-check frequency) with the Stable Duration. These are two separate functions that operate independently of each other. The re-check frequency would be used first in order to find a matching file, then the Stable Duration, if specified, would be used to re-check the selected file to assure that its size is stable.
@@ -675,16 +657,16 @@ Do not confuse the option $\@RECHKFREQ (re-check frequency) with the Stable Dura
 ### (On Success) Store Processed File Details to LSAM Dynamic Variables
 
 - **File Name Variable**: Defines the root name of the file (including
-    an extension, if any, from an IFS stream file) that is stored,
-    similar to the OpCon system property $ARRIVED FILE SHORT NAME. The
-    value of the Dynamic Variable could be used after the File Arrival
-    Job, if there is any other automation process that the Agent will
-    perform that needs a local reference to the file that was found.
+  an extension, if any, from an IFS stream file) that is stored,
+  similar to the OpCon system property $ARRIVED FILE SHORT NAME. The
+  value of the Dynamic Variable could be used after the File Arrival
+  Job, if there is any other automation process that the Agent will
+  perform that needs a local reference to the file that was found.
 - **Record Count Variable**: Defines the number of records (for DB2
-    files/tables), or the number of data bytes (for IFS non-DB2 file
-    systems) is stored when a file is found. This Dynamic Variable can
-    be predefined as a numeric variable type, but a character type of
-    Dynamic Variable can also be used.
+  files/tables), or the number of data bytes (for IFS non-DB2 file
+  systems) is stored when a file is found. This Dynamic Variable can
+  be predefined as a numeric variable type, but a character type of
+  Dynamic Variable can also be used.
 
 #### Use of the Variables Tab for IBM i File Arrival jobs
 
@@ -706,21 +688,21 @@ variable name by prefixing the characters '$@' to the keyword, e.g.,
 the keyword for "Re-check frequency" is registered in the Variables tab
 as '$\@RECHKFREQ'.
 
-  CHKFILE      CHKIFSFIL
-  ------------ ------------
-  LOCK
-  NUMRECPROP   FILSIZPROP
-  FAILCDPROP   FAILCDPROP
-  FAILCODEDV   FAILCODEDV
-  FAILIFZERO   FAILIFZERO
-  CRTREFDATE   CRTREFDATE
-  JOBENDTIME   JOBENDTIME
-  JOBREFDATE   JOBREFDATE
-  RECHKFREQ    RECHKFREQ
-  AUT
+|CHKFILE     | CHKIFSFIL |
+| ---------- | --------- | 
+|LOCK        |           |
+|NUMRECPROP  | FILSIZPROP|
+|FAILCDPROP  | FAILCDPROP|
+|FAILCODEDV  | FAILCODEDV|
+|FAILIFZERO  | FAILIFZERO|
+|CRTREFDATE  | CRTREFDATE|
+|JOBENDTIME  | JOBENDTIME|
+|JOBREFDATE  | JOBREFDATE|
+|RECHKFREQ   | RECHKFREQ |
+|AUT         |           |
 
-  : IBM i File Arrival Job Parameters Supported only by $@-Variable
-  Names
+: IBM i File Arrival Job Parameters Supported only by $@-Variable
+Names
 
 When using the $\@JOBENDTIME parameter, the Agent's raw commands
 (CHKFILE and CHKIFSFIL) will accept either a decimal value or a "clock
@@ -766,60 +748,60 @@ significance when used with the OpCon File Arrival Job, in the Variables
 tab.
 
 - **$\@FAILIFZERO**: This is the same as the job master Failure
-    Condition, "Fail If File Contains Zero Records or Zero Bytes."
-    However, if the other job failure condition ("Fail On Error Except
-    Reached End Time") is already selected, then this Variables tab
-    special variable can be used to also specify that a job should NOT
-    fail if the file contains zero records or zero data bytes.
+  Condition, "Fail If File Contains Zero Records or Zero Bytes."
+  However, if the other job failure condition ("Fail On Error Except
+  Reached End Time") is already selected, then this Variables tab
+  special variable can be used to also specify that a job should NOT
+  fail if the file contains zero records or zero data bytes.
 
 - **$\@RECHKFREQ**: This Agent special variable is used to control
-    how aggressive the File Arrival job will be when it is watching for
-    a file to arrive. It specifies the number of seconds that the job
-    should wait between checks. For File Arrival jobs started by OpCon,
-    the Agent supports a default number of seconds (set by using the IBM
-    i Agent's green screen menu function, option 7 under sub-menu 3), so
-    that the normal behavior of a File Arrival job that has started
-    execution before a non-zero Create End Time has elapsed, will be to
-    continue looping through repeated checks for a matching file, until
-    the End Time is reached. The user can set this special variable
-    either (1) to override the frequency of checks to a greater or
-    lesser number of seconds, or (2) to force the number of seconds to
-    zero, meaning that the file check will be performed only once,
-    regardless of the setting of the End Time.
+  how aggressive the File Arrival job will be when it is watching for
+  a file to arrive. It specifies the number of seconds that the job
+  should wait between checks. For File Arrival jobs started by OpCon,
+  the Agent supports a default number of seconds (set by using the IBM
+  i Agent's green screen menu function, option 7 under sub-menu 3), so
+  that the normal behavior of a File Arrival job that has started
+  execution before a non-zero Create End Time has elapsed, will be to
+  continue looping through repeated checks for a matching file, until
+  the End Time is reached. The user can set this special variable
+  either (1) to override the frequency of checks to a greater or
+  lesser number of seconds, or (2) to force the number of seconds to
+  zero, meaning that the file check will be performed only once,
+  regardless of the setting of the End Time.
 
 - **$\@AUT**: As documented for the CHKFILE command, this Agent
-    special variable can provide a customized list of one or more DB2
-    object authorities that should be checked for the AUTUSER. When this
-    special variable is included in the list, it will override the EM
-    authority checkboxes for READ, WRITE and/or EXECUTE, since those are
-    simpler authorities that apply more directly to stream files in the
-    IFS root file system.
+  special variable can provide a customized list of one or more DB2
+  object authorities that should be checked for the AUTUSER. When this
+  special variable is included in the list, it will override the EM
+  authority checkboxes for READ, WRITE and/or EXECUTE, since those are
+  simpler authorities that apply more directly to stream files in the
+  IFS root file system.
 
 - **$\@CRETREFDATE**: This is the keyword that supports this Agent's
-    option to override the default assumption that the File Creation
-    Times are always relative to midnight which is the starting time of
-    the OpCon Schedule that submitted the File Arrival job. In some
-    cases, it might be desirable to utilize an Agent Dynamic Variable
-    token to control which date is the midnight reference. In unusual
-    cases, it also becomes possible to temporarily add the
-    $\@CRTREFDATE and specify a hard-coded value whenever an OpCon
-    Restart of a Job might be necessary. (Outside of OpCon control, the
-    CRTREFDATE parameter default would be the current IBM i system date,
-    if this keyword is not used. The use case for the CHKFILE and
-    CHKIFSFIL commands outside of OpCon control would include some of
-    the Agent's automation tools that support stand-alone command
-    execution, including a Multi-Step Job Script and also, possibly, the
-    Agent's Captured Data Response Rules.)
+  option to override the default assumption that the File Creation
+  Times are always relative to midnight which is the starting time of
+  the OpCon Schedule that submitted the File Arrival job. In some
+  cases, it might be desirable to utilize an Agent Dynamic Variable
+  token to control which date is the midnight reference. In unusual
+  cases, it also becomes possible to temporarily add the
+  $\@CRTREFDATE and specify a hard-coded value whenever an OpCon
+  Restart of a Job might be necessary. (Outside of OpCon control, the
+  CRTREFDATE parameter default would be the current IBM i system date,
+  if this keyword is not used. The use case for the CHKFILE and
+  CHKIFSFIL commands outside of OpCon control would include some of
+  the Agent's automation tools that support stand-alone command
+  execution, including a Multi-Step Job Script and also, possibly, the
+  Agent's Captured Data Response Rules.)
 
 - **$\@JOBENDTIME** and **$\@JOBREFDATE**: These are the keywords
-    that support this Agent's option to control the Job End Time,
-    separately from the File Create End Time. Refer to the description
-    above about the CRTREFDATE for the values that can also be used for
-    the JOBREFDATE. The JOBENDTIME value can be provided as a positive
-    or negative value relative to midnight (the JOBREFDATE) in either
-    decimal (14.5) or clock time (14:30) format. Refer to the following
-    descriptions of how the Job End Time affects the behavior of the
-    File Arrival Job.
+  that support this Agent's option to control the Job End Time,
+  separately from the File Create End Time. Refer to the description
+  above about the CRTREFDATE for the values that can also be used for
+  the JOBREFDATE. The JOBENDTIME value can be provided as a positive
+  or negative value relative to midnight (the JOBREFDATE) in either
+  decimal (14.5) or clock time (14:30) format. Refer to the following
+  descriptions of how the Job End Time affects the behavior of the
+  File Arrival Job.
 
 #### Controlling the Behavior of the IBM i File Arrival Job
 
@@ -890,15 +872,15 @@ Time is determined by the following order of job parameter evaluation:
 - The $\@JOBENDTIME was specified.
 
 - The $\@JOBENDTIME was not specified, but the File Creation End Time
-    was specified, so the File Creation End Time is also used for the
-    Job End Time.
+  was specified, so the File Creation End Time is also used for the
+  Job End Time.
 
 - When neither End Time is specified, but the File Creation Start time
-    was specified, then the Job End Time will be assumed as 24 hours
-    after the File Creation Start time.
+  was specified, then the Job End Time will be assumed as 24 hours
+  after the File Creation Start time.
 
 - When no Start or End times were specified, the Job End Time will be
-    assumed as 24 hours after the IBM i job actually started execution.
+  assumed as 24 hours after the IBM i job actually started execution.
 
 According to the order of Job End Time evaluation above, it would be
 necessary to schedule a new File Arrival job once for each OpCon
@@ -906,15 +888,15 @@ Schedule date, if the objective is to have a file watcher job that is
 always active.
 
 - Similarly, since a File Arrival Job ends whenever a qualified file
-    is found, or when the Job End Time is reached, it is necessary to
-    restart the job or start a new File Arrival job if the objective is
-    to have a file watcher job that is always active.
+  is found, or when the Job End Time is reached, it is necessary to
+  restart the job or start a new File Arrival job if the objective is
+  to have a file watcher job that is always active.
 
 - The IBM i File Arrival Job completion codes, sent as LSAM Feedback
-    and (usually) as the final Job Completion code, can be tested using
-    the Events tab rules in order to decide when a File Arrival job
-    should be restarted, or when it is time to let the next day's
-    Schedule build and execute a new instance of the job.
+  and (usually) as the final Job Completion code, can be tested using
+  the Events tab rules in order to decide when a File Arrival job
+  should be restarted, or when it is time to let the next day's
+  Schedule build and execute a new instance of the job.
 
 Whenever a File Arrival job reaches the Job End Time and no qualified
 file was found, the job completion code (and an LSAM Feedback code) will
@@ -967,20 +949,20 @@ this implies that the File Arrival job will start checking for a
 qualified file immediately when OpCon tells it to start.
 
 - If OpCon starts the File Arrival job at a time that is later than
-    the End Time, only a single file check will be performed, regardless
-    of the setting of an optional $\@RECHKFREQ value. Any matching file
-    that is found will be checked to be sure that it was not created
-    outside of the File Creation Times. If a file with a matching name
-    is found, but its Create Time falls outside of the specified
-    Creations Times, then the job will end abnormally with completion
-    code CKF0006 rather than the "file not found" code of CKF0001.
+  the End Time, only a single file check will be performed, regardless
+  of the setting of an optional $\@RECHKFREQ value. Any matching file
+  that is found will be checked to be sure that it was not created
+  outside of the File Creation Times. If a file with a matching name
+  is found, but its Create Time falls outside of the specified
+  Creations Times, then the job will end abnormally with completion
+  code CKF0006 rather than the "file not found" code of CKF0001.
 
 If both a Start Time and an End Time are specified, then all of the
 operations described above for each single time will apply.
 
 - This is another case in which the IBM i File Arrival command
-    parameter special variable $\@RECHKFREQ can vary the behavior of
-    the File Arrival job.
+  parameter special variable $\@RECHKFREQ can vary the behavior of
+  the File Arrival job.
 
 #### Managing Job Status versus the Possible Exit Descriptions (Completion Codes)
 
